@@ -78,6 +78,8 @@ struct rpu_mcu_boot_vectors {
 #define RPU_ADDR_MASK_BEV_OFFSET 0x000FFFFF
 
 /* Register locations from the Echo520 TRM */
+#define RPU_REG_INT_FROM_BCN_RPU_CTRL 0xA4000484 /* 8.1.1 */
+
 #define RPU_REG_INT_FROM_RPU_CTRL 0xA4000400 /* 8.1.1 */
 #define RPU_REG_BIT_INT_FROM_RPU_CTRL 17
 

@@ -16,6 +16,8 @@
 
 
 
+
+
 enum nrf_wifi_status hal_rpu_irq_enable(struct nrf_wifi_hal_dev_ctx *hal_dev_ctx)
 {
 	enum nrf_wifi_status status = NRF_WIFI_STATUS_FAIL;
@@ -522,6 +524,24 @@ enum nrf_wifi_status hal_rpu_irq_process(struct nrf_wifi_hal_dev_ctx *hal_dev_ct
 				goto out;
 			}
 		}
+	}
+	//else 
+	//{
+	//   nrf_wifi_osal_log_err(hal_dev_ctx->hpriv->opriv,
+	//					      "%s: IRQ from LMAC ",
+	//					      __func__); 
+	//}
+
+    unsigned int rpuIsr = 0;
+    status = hal_rpu_reg_read(hal_dev_ctx,
+				  &rpuIsr,
+				  RPU_REG_INT_FROM_BCN_RPU_CTRL);
+	unsigned int bcn_cnt = (rpuIsr & 0x7fffffff )  >> 8;
+    if ( ((rpuIsr & 0xff ) == 0xcc) && (bcn_cnt < 200)) 
+	{		
+	    nrf_wifi_osal_log_err(hal_dev_ctx->hpriv->opriv,
+						      "%s: Rcved Beacons in second %d  ",
+						      __func__,bcn_cnt); 
 	}
 
 	status = hal_rpu_irq_ack(hal_dev_ctx);
