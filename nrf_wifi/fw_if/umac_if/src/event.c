@@ -1034,6 +1034,8 @@ static enum nrf_wifi_status umac_event_current_temp_proc(struct nrf_wifi_fmac_de
 			      "%s %d: Temperature received !",
 			      __func__,event_current_temp->current_temperature);
 
+	printf("TempCalibCnt:%d\n",event_current_temp->tempCalibCnt);
+	printf("VbatClibCnt:%d\n",event_current_temp->vbatCalibCnt);
 #endif
 	printf("Temperature:%d\n",event_current_temp->current_temperature);
 	fmac_dev_ctx->current_temp = event_current_temp->current_temperature;

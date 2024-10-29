@@ -180,6 +180,9 @@ struct nrf_wifi_fmac_dev_ctx {
 	int temp_get_status;
 	/** current temperature */
 	int current_temp;
+	int tempCalibCnt;
+	int vbatCalibCnt;
+	unsigned int calibTimeTaken;
 	/** Data pointer to mode specific parameters */
 	char priv[];
 };

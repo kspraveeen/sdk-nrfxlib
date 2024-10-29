@@ -1619,6 +1619,9 @@ struct nrf_wifi_event_current_temperature {
 	struct nrf_wifi_sys_head sys_head;
 	/** Current temperature value in degree celsius */
 	int current_temperature;
+	int tempCalibCnt;
+	int vbatCalibCnt;
+	unsigned int calibTimeTaken;
 } __NRF_WIFI_PKD;
 
 #endif /* __HOST_RPU_SYS_IF_H__ */
